@@ -1,0 +1,22 @@
+<%if @time_entry_event.present? %>
+  <div class="well span8">
+    <div>
+      <h4><%= link_to 'Click here for Previous Log in/Log out History', time_sheet_entry_path(@time_entry_event) %></h4>
+      <br>
+    </div>
+    <div class="well span8">
+      <% if @time_entry_event.show_previous_if_any %>  
+      <%= render 'current_login_logout_time', clock_event: @time_entry_event %>
+  <% end %>
+    </div>
+    <div class="buttons">
+      <%= render 'shared/clock_buttons', clock_event: @time_entry_event %>
+    </div>
+    <p>
+    <br>
+    <strong>Total Time spent:</strong>
+    <%= format_total_time(@time_entry_event.total_time_on_clock_event) %>
+    </p>
+  </div> 
+<%end%> 
+<p><%= link_to 'Back to Time Sheet', time_sheet_entries_path , class: 'btn btn-info' %> </p>

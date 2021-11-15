@@ -1,0 +1,35 @@
+<p><%= link_to 'Edit TimeSheet', edit_time_sheet_entry_path(@time_entry_event), class: 'btn btn-info' %></p>
+<div>
+  <table  class="table table-bordered table-striped" cellspacing="2" width="100%">
+    <caption> Time Sheet </caption>
+    <tr>
+      <th>Employee Name</th>
+      <th>Email</th> 
+      <th>Total Time Spent</th>
+    </tr>
+    <tr>
+      <td> <%= current_user.name %> </td>
+      <td> <%= current_user.email %> </td>
+      <td>
+        <%= format_total_time(@time_entry_event.total_time_on_clock_event) %>
+      </td>
+    </tr>
+  </table>  
+</div>
+<table id="dtBasicExample", class="table table-striped">
+  <tr>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Time spent</th>    
+  </tr>
+  <% @time_entry_event.time_entries.each do |time_entry| %>
+    <tr>
+      <td> <%= log_in_date(time_entry.created_at) %> </td>
+      <td> <%= log_in_time(time_entry.created_at) %> </td>
+      <td> <%= log_out_time(time_entry.event_date) %> </td>
+      <td> <%= time_entry.time_on_clock %> </td>
+    </tr>
+  <% end %>
+</table>
+<p><%= link_to 'Back to TimeSheet', time_sheet_entries_path , class: 'btn btn-info' %> </p>

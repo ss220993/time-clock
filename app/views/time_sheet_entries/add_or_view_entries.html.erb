@@ -1,0 +1,12 @@
+<div class="well">
+    <ul class="users-with-time-sheet">
+        <% @users_with_time_sheet.each do |user| %>
+        <br>
+        <ul>
+            view timesheet: <%= link_to "#{user.name}", view_user_time_sheet_time_sheet_entries_path(user: {id: user}), class: 'btn btn-info'%>
+        </ul>
+        <% end %>
+      </ul>
+</div>
+<br>
+<p><%= link_to 'Back to Time Sheet', time_sheet_entries_path, class: 'btn btn-info'  %> </p>

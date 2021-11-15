@@ -1,0 +1,15 @@
+<h4> Previous State</h4>
+<table class="table table-striped">
+  <tr>
+    <th>Date</th>
+    <th>Start Time</th>
+    <th>End Time</th>
+    <th>Time spent</th>    
+  </tr>
+  <tr>
+    <td> <%= log_in_date(@time_entry_event.time_entries.last.created_at) %> </td>
+    <td> <%= log_in_time(@time_entry_event.time_entries.last.created_at) %> </td>
+    <td> <%= log_out_time(@time_entry_event.time_entries.last.event_date) %> </td>
+    <td> <%= @time_entry_event.time_entries.last.time_on_clock %> </td>
+  </tr>
+</table>

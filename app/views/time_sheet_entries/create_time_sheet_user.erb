@@ -1,0 +1,13 @@
+<%= render 'shared/errors', object: @new_time_sheet %>
+
+<%= form_for(@new_time_sheet) do |f| %>
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+  <%= f.submit 'Add Time Sheet Entry', class: 'btn' %>    
+<% end %>

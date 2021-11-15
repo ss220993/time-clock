@@ -1,0 +1,15 @@
+<div><h4>Hello <%= current_user.name.capitalize %></h4></div>
+<% if current_user.admin? %>
+<div class="well">
+    <%= link_to 'Add/Update Time sheet entries', add_or_view_entries_time_sheet_entries_path, class: 'btn btn-info' %>
+</div>
+<%end%>
+<div class="well">
+  <%= link_to 'Clock in/Clock Out', time_sheet_entry_clock_in_clock_out_path(@time_entry_event), class: 'btn btn-info' %>
+</div>
+
+<div class="well">
+  <p>
+    <%= link_to "View My Time Sheet", time_sheet_entry_path(@time_entry_event), class: 'btn btn-info' %>
+  </p>
+</div>
