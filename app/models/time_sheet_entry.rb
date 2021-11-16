@@ -1,12 +1,11 @@
 class TimeSheetEntry < ActiveRecord::Base
   include TimeSheetEntryHelper
-  has_many :time_entries, -> { order 'created_at desc' }
+  has_many :time_entries, -> { order 'created_at' }
   belongs_to :user
-
-  scope :current_user_time_sheet_entry,->(user) { where('user_id = ?', user) }
-
   accepts_nested_attributes_for :user
   
+  scope :current_user_time_sheet_entry,->(user) { where('user_id = ?', user) }
+
   validates :title, presence: true
   validates :description, presence: true
 
