@@ -6,8 +6,6 @@ class TimeSheetEntry < ActiveRecord::Base
   scope :current_user_time_sheet_entry,->(user) { where('user_id = ?', user) }
 
   accepts_nested_attributes_for :user
-  
-  scope :current_user_time_sheet_entry,->(user) { where('user_id = ?', user) }
 
   validates :title, presence: true
   validates :description, presence: true

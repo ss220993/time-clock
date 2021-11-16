@@ -35,7 +35,7 @@ class TimeSheetEntriesController < AuthenticationController
 
   def view_user_time_sheet
     @user = User.find(params[:user][:id])
-    @time_sheet_event = TimeSheetEntry.current_user_time_sheet_entry(@user.id) if @user.present?
+    @time_sheet_event = TimeSheetEntry.find_by(user_id: @user.id) if @user.present?
   end
 
   def update
