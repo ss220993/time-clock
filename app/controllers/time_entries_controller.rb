@@ -27,6 +27,6 @@ class TimeEntriesController < AuthenticationController
   private
 
   def get_time_sheet_entry
-    @time_entry_event = TimeSheetEntry.includes(:time_entries).find(params.permit(:id))
+    @time_entry_event = TimeSheetEntry.includes(:time_entries).find(params[:id])
   end
 end
