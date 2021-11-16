@@ -5,18 +5,23 @@ class TimeEntry < ActiveRecord::Base
 
   class << self
     def clocks_in time_entry_event
-      time_entry = TimeEntry.create(time_sheet_entry: time_entry_event)
-      time_entry.event_type = 1
-      time_entry.save
+      update_time_entry_event.call(1, nil, TimeEntry.create(time_sheet_entry: time_entry_event))
     end
 
     def clocks_out time_entry_event
-      time_entry = time_entry_event.current_clock_in
-      if time_entry 
-        time_entry.event_date = Time.now
-        time_entry.event_type = 0
-        time_entry.save
-      end
+      update_time_entry_event.call(0, Time.now, time_entry_event.current_clock_in)
+    end
+
+    private 
+
+    def update_time_entry_event
+      ->(event_type, event_date, time_entry) {
+        if time_entry 
+          time_entry.event_date = event_date
+          time_entry.event_type = event_type
+          time_entry.save
+        end
+      }
     end
   end
 end

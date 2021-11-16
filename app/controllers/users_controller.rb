@@ -15,15 +15,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    begin
-      @user = User.new(user_params)
-      @user.save!
-      reset_session
-      log_in @user
+    new_user_created = UserService.new(user_params, reset_session, session).create_user
+    if new_user_created[:record_creation] == true
       flash[:success] = 'Logged In Successfully!'
       redirect_to root_path
-    rescue ActiveRecord::RecordInvalid => e
-      flash[:danger] = "Log In Not Successful, #{e.message}"
+    else
+      flash[:danger] = "Log In Not Successful #{new_user_created[:error_message]}"
       redirect_to new_user_path
     end
   end

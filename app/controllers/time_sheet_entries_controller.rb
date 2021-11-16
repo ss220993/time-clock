@@ -2,6 +2,7 @@ class TimeSheetEntriesController < AuthenticationController
   before_action :admin_only, only: %i[create add_or_view_entries view_user_time_sheet]
   before_action :load_time_sheet_entry, only: %i[edit show update]
   before_action :load_time_sheet_of_current_user, only: [:clock_in_clock_out]
+  
   def index
     @time_entry_event = @current_user.time_sheet_entry
     redirect_to new_time_sheet_entry_path if(@time_entry_event.nil?)
